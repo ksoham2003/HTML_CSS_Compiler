@@ -1,29 +1,95 @@
 .app {
-  display: flex;
-  height: 100vh;
-}
-
-.editor, .output {
-  flex: 1;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-.editor {
+.examples {
+  margin-bottom: 20px;
+}
+
+.example {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.example-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.example-code {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.example-output {
+  flex: 1;
+}
+
+.example h4 {
+  margin-top: 0;
+}
+
+.example-code pre {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.example-output .output-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 100px;
   background-color: #f0f0f0;
-  border-right: 1px solid #ccc;
-}
-
-.output {
-  background-color: #fff;
-}
-
-textarea {
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 button {
   margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.compiler {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.compiler-content {
+  display: flex;
+}
+
+.compiler-code {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.compiler-output {
+  flex: 1;
+}
+
+.compiler-code textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.compiler-output .output-box {
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 200px;
+  background-color: #f0f0f0;
 }
