@@ -1,135 +1,30 @@
-import React, { useState } from 'react';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Simulation from './Simulation';
+import Procedure from './Procedure';
 import './App.css';
 
-const examples = [
-  {
-    name: "Centered Text",
-    html: "<div class='centered'>Hello, World!</div>",
-    css: ".centered { text-align: center; color: blue; font-size: 24px; }"
-  },
-  {
-    name: "Styled Button",
-    html: "<button class='styled-button'>Click Me</button>",
-    css: ".styled-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }"
-  },
-  {
-    name: "Card Layout",
-    html: `
-      <div class="card">
-        <h3>Card Title</h3>
-        <p>This is a simple card layout example.</p>
-      </div>
-    `,
-    css: `
-      .card {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
-        background-color: #fff;
-      }
-      .card h3 {
-        margin-top: 0;
-      }
-    `
-  },
-  {
-    name: "Shadow Text",
-    html: "<p class='shadow-text'>This is shadow text!</p>",
-    css: ".shadow-text { font-size: 24px; color: #333; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }"
-  },
-  {
-    name: "Gradient Background",
-    html: "<div class='gradient-box'>Gradient Background</div>",
-    css: `
-      .gradient-box {
-        padding: 20px;
-        color: white;
-        background: linear-gradient(to right, #ff7e5f, #feb47b);
-        text-align: center;
-        border-radius: 8px;
-      }
-    `
-  }
-];
-
 function App() {
-  const [htmlCode, setHtmlCode] = useState('');
-  const [cssCode, setCssCode] = useState('');
-  const [output, setOutput] = useState('');
-  const [exampleOutputs, setExampleOutputs] = useState(Array(examples.length).fill(''));
-
-  const handleRun = () => {
-    const styledOutput = `
-      <style>${cssCode}</style>
-      ${htmlCode}
-    `;
-    setOutput(styledOutput);
-  };
-
-  const handleExampleClick = (index) => {
-    const example = examples[index];
-    const styledOutput = `
-      <style>${example.css}</style>
-      ${example.html}
-    `;
-    const newOutputs = [...exampleOutputs];
-    newOutputs[index] = styledOutput;
-    setExampleOutputs(newOutputs);
-  };
-
   return (
-    <div className="app">
-      <div className="examples">
-        <h2>CSS Examples</h2>
-        {examples.map((example, index) => (
-          <div key={index} className="example">
-            <h3>{example.name}</h3>
-            <div className="example-content">
-              <div className="example-code">
-                <h4>HTML Code</h4>
-                <pre>{example.html}</pre>
-                <h4>CSS Code</h4>
-                <pre>{example.css}</pre>
-              </div>
-              <div className="example-output">
-                <h4>Output</h4>
-                <div className="output-box" dangerouslySetInnerHTML={{ __html: exampleOutputs[index] }} />
-              </div>
-            </div>
-            <hr />
-            <button onClick={() => handleExampleClick(index)}>Try It</button>
-          </div>
-        ))}
-      </div>
+    <Router>
+      <div className="app">
+        <header>
+          <h1>Code Simulation App</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/procedure">How to Use</Link>
+          </nav>
+        </header>
 
-      <hr />
-
-      <div className="compiler">
-        <h2>HTML & CSS Compiler</h2>
-        <div className="compiler-content">
-          <div className="compiler-code">
-            <textarea
-              value={htmlCode}
-              onChange={(e) => setHtmlCode(e.target.value)}
-              placeholder="Write your HTML here..."
-              rows="10"
-            />
-            <textarea
-              value={cssCode}
-              onChange={(e) => setCssCode(e.target.value)}
-              placeholder="Write your CSS here..."
-              rows="10"
-            />
-            <button onClick={handleRun}>Run</button>
-          </div>
-          <div className="compiler-output">
-            <h4>Output</h4>
-            <div className="output-box" dangerouslySetInnerHTML={{ __html: output }} />
-          </div>
-        </div>
+        <main>
+          <Routes>
+            <Route path="/" element={<Simulation />} />
+            <Route path="/procedure" element={<Procedure />} />
+          </Routes>
+        </main>
       </div>
-    </div>
+    </Router>
   );
 }
 
